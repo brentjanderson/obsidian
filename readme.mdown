@@ -18,9 +18,16 @@ Run `npm install` in the server directory to install all the dependencies you'll
 
 I have this platform up and running successfully on Amazon's AWS, but a local installation is workable.
 Just be sure to sure to change the address in the client side script push.js to point to
-your own push server.
+your own push server (By default, the client script push.js points to localhost:8888).
 
 Once you have started the node server (node server/server.js) successfully,
-you now have the following tools at your command on the client side:
+feel free to take client/demo.html for a spin to play around with the push commands available.
 
-* 
+You now have the following javascript calls at your command on the client side:
+
+* netSubscribe(key, callbackFunction[, noCallbackNow]) -- Start listening for updates to property `key` and fire callbackFunction(newValue) when changes happen
+    - Optional noCallbackNow parameter accepts true/anything else. If true, then callbackFunction will not be called in conjunction with the subscription.
+* netCommit(key, value) -- Update the key and the value; this will trigger updates on all subscribers, both locally and remotely
+* netUnsubscribe(key, callbackFunction) -- Stop listening for updates to a property.
+* netUnsubscribe(key) -- Stop listening for all updates on a given property
+* netUnsubscribe() -- Stop listening for all updates

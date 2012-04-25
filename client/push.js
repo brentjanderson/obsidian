@@ -88,13 +88,17 @@ function netSubscribe(theKey, callback, noCallbackNow) {
 }
 
 // Find a key and callback function pair; remove if found //
-//// Don't know if this thing works...
 function netUnsubscribe(theKey, callback) {
-    for (var i=0; i < subscribers.length; i++) {
+    for (var i=subscribers.length-1; i >= 0; i--) {
         if (subscribers[i][0] == theKey && subscribers[i][1] == callback) {
-            subscribers.splice(i, 1); // Magic remove function :) //
+            subscribers.splice(i, 1);
+        } else if (subscribers[i][0] == theKey && callback == null) {
+            subscribers.splice(i, 1);
+        } else if (theKey == null && callback == null) {
+            subscribers.splice(i, 1);
         }
     }
 }
 
+// Register this client as associated with this particular collection
 socket.emit('register', {collection_id: core_collectionID});
