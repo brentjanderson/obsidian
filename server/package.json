@@ -1,0 +1,15 @@
+{
+  "name": "PushServer",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "dependencies": {
+    "hooks": "~0.2.0",
+    "mongodb": "~0.9.9-8",
+    "mongoose": "~2.5.14",
+    "mysql": "~0.9.5",
+    "sequelize": "~1.3.7",
+    "socket.io": "~0.9.5"
+  },
+  "devDependencies": {}
+}

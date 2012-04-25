@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src="socket.io.min.js"></script>
+        <script src="push.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <title>Demo App</title>
+    </head>
+    <body>
+        <h1>Demo!</h1>
+        <p>Use the controls below to experiment with subscribing, unsubscribing, and setting values.</p>
+        <p>Try it out with other browser windows, or connecting from other clients</p>
+        <p>Some things to note:</p>
+        <ul>
+            <li>Use the checkbox to control if the client is updated when the client subscribes</li>
+            <li>Play around with subscribing and updating, unsubscribing and updating, etc.</li>
+            <li>It gets really fun when you have multiple clients connecting to the same server!</li>
+        </ul>
+        <button id="subscribe">Subscribe to demoProp</button>
+        <button id="unsubscribe">Unsubscribe to demoProp</button>
+        <input type="text" name="demoProp" id="demoProp"/>
+        <button id="commit">Commit</button>
+        <br/>
+        <label for="refresh"><input type="checkbox" name="refresh" id="refresh" checked/>Refresh On Subscribe</label>
+        
+        <p>DemoProp is: <span id="subscriber"></span></p>
+        <p>This client's status: <span id="status">Unsubscribed</span></p>
+        
+        <script>
+            // Be sure to open up push.js to configure the server's location
+            function callback(data) {
+                $('#subscriber').html(data);
+            }
+            
+            $('#subscribe').click(function() {
+                netSubscribe('demoProp', callback, !$('#refresh').is(':checked'));
+                $('#status').html('Subscribed');
+            });
+            
+            $('#unsubscribe').click(function() {
+                netUnsubscribe('demoProp', callback);
+                // Clean up after the netUnsubscribe
+                $('#subscriber').html('');
+                $('#status').html('Unsubscribed');
+            });
+            
+            $('#commit').click(function() {
+                netCommit('demoProp', $('#demoProp').val());
+            });
+        </script>
+    </body>
+</html>

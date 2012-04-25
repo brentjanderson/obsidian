@@ -1,0 +1,26 @@
+Obsidian Push Library
+=====================
+
+This library is a pretty simple implementation of Node.js, MongoDB, and Websockets.
+It's not been tested and is provided AS-IS, but you may find it very useful as a starting
+point for browser-based projects that need push notifications, state saving, etc.
+
+Quickstart Guide
+----------------
+
+After cloning the source to your system, you'll need to install the following:
+* [node](http://nodejs.org) -- The thing that runs it all
+* [mongodb](http://mongodb.org) -- I use mongo to cache system states
+
+You will also need a browser that supports websockets.
+
+Run `npm install` in the server directory to install all the dependencies you'll need.
+
+I have this platform up and running successfully on Amazon's AWS, but a local installation is workable.
+Just be sure to sure to change the address in the client side script push.js to point to
+your own push server.
+
+Once you have started the node server (node server/server.js) successfully,
+you now have the following tools at your command on the client side:
+
+* 
